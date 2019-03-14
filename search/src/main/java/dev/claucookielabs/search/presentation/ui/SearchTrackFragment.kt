@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import dev.claucookielabs.core.CoreInjectHelper
 import dev.claucookielabs.core.DaggerCoreComponent
 import dev.claucookielabs.search.R
 import dev.claucookielabs.search.di.DaggerSearchComponent
@@ -17,11 +18,10 @@ class SearchTrackFragment : Fragment() {
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
-        val coreComponent = DaggerCoreComponent.builder().build()
 
         DaggerSearchComponent
             .builder()
-            .coreComponent(coreComponent)
+            .coreComponent(CoreInjectHelper.provideCoreComponent(requireActivity().applicationContext))
             .build()
             .inject(this)
     }

@@ -4,14 +4,18 @@ import android.app.Activity
 import android.app.Application
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
+import dev.claucookielabs.core.CoreComponent
+import dev.claucookielabs.core.CoreComponentProvider
+import dev.claucookielabs.core.DaggerCoreComponent
 import dev.claucookielabs.lastfm.di.DaggerAppComponent
 import javax.inject.Inject
 
 
-class LastFmApplication : Application(), HasActivityInjector {
+class LastFmApplication : Application(), HasActivityInjector, CoreComponentProvider {
 
     @Inject
     lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Activity>
+    private lateinit var coreComponent: CoreComponent
 
     override fun activityInjector(): DispatchingAndroidInjector<Activity>? {
         return dispatchingAndroidInjector
@@ -23,6 +27,15 @@ class LastFmApplication : Application(), HasActivityInjector {
             .application(this)
             .build()
             .inject(this)
+    }
+
+    override fun provideCoreComponent(): CoreComponent {
+        if (!this::coreComponent.isInitialized) {
+            coreComponent = DaggerCoreComponent
+                .builder()
+                .build()
+        }
+        return coreComponent
     }
 }
 
