@@ -14,12 +14,9 @@ import javax.inject.Inject
 class LastFmApplication : Application(), HasActivityInjector, CoreComponentProvider {
 
     @Inject
-    lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Activity>
-    private lateinit var coreComponent: CoreComponent
+    lateinit var activitiesInjector: DispatchingAndroidInjector<Activity>
 
-    override fun activityInjector(): DispatchingAndroidInjector<Activity>? {
-        return dispatchingAndroidInjector
-    }
+    private lateinit var coreComponent: CoreComponent
 
     override fun onCreate() {
         super.onCreate()
@@ -37,5 +34,7 @@ class LastFmApplication : Application(), HasActivityInjector, CoreComponentProvi
         }
         return coreComponent
     }
+
+    override fun activityInjector() = activitiesInjector
 }
 

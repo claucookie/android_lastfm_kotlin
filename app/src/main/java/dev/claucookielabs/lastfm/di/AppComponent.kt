@@ -1,16 +1,19 @@
 package dev.claucookielabs.lastfm.di
 
 import android.app.Application
+import dagger.BindsInstance
 import dagger.Component
-import dagger.android.AndroidInjector
-import dagger.android.support.AndroidSupportInjectionModule
+import dagger.android.AndroidInjectionModule
 import dev.claucookielabs.lastfm.LastFmApplication
 import javax.inject.Singleton
-import dagger.BindsInstance
 
 
-
-@Component(modules = [AndroidSupportInjectionModule::class, ActivityModule::class])
+@Component(
+    modules = [
+        AndroidInjectionModule::class,
+        MainActivityModule::class
+    ]
+)
 @Singleton
 interface AppComponent {
     /* We will call this builder interface from our custom Application class.
