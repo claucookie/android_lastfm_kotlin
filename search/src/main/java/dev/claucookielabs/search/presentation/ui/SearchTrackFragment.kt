@@ -1,20 +1,15 @@
 package dev.claucookielabs.search.presentation.ui
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import dagger.android.support.DaggerFragment
 import dev.claucookielabs.search.R
 
-class SearchTrackFragment : Fragment() {
+class SearchTrackFragment : DaggerFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
         inflater.inflate(R.layout.fragment_search, null)
-
-    override fun onAttach(context: Context?) {
-        super.onAttach(context)
-    }
 
 }
