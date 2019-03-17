@@ -13,6 +13,8 @@ android {
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
+        buildConfigField "String", "LAST_FM_API_KEY", "\"9556cfb87fe52e0f72bdaa3163dda5cf\""
+
     }
 
     buildTypes {

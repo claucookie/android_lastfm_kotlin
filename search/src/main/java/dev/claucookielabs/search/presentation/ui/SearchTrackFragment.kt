@@ -8,9 +8,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import dagger.android.support.DaggerFragment
 import dev.claucookielabs.search.R
+import dev.claucookielabs.search.data.repository.TracksRepository
 import dev.claucookielabs.search.domain.TrackInfo
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
 class SearchTrackFragment : DaggerFragment() {
+
+    @Inject
+    lateinit var tracksRepository: TracksRepository
 
     private lateinit var tracksRv: RecyclerView
 
@@ -21,6 +28,10 @@ class SearchTrackFragment : DaggerFragment() {
         super.onViewCreated(view, savedInstanceState)
         initViews(view)
         initTracksRv()
+        tracksRepository.getTracksByName("hello")
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe()
     }
 
     private fun initViews(view: View) {
