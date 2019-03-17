@@ -9,14 +9,14 @@ import androidx.recyclerview.widget.RecyclerView
 import dagger.android.support.DaggerFragment
 import dev.claucookielabs.search.R
 import dev.claucookielabs.search.domain.model.TrackInfo
-import dev.claucookielabs.search.presentation.SearchTrackContract.SearchTrackPresenter
 import dev.claucookielabs.search.presentation.SearchTrackContract.SearchTrackView
+import dev.claucookielabs.search.presentation.presenter.SearchTrackPresenterImpl
 import javax.inject.Inject
 
 class SearchTrackFragment : DaggerFragment(), SearchTrackView {
 
     @Inject
-    lateinit var presenter: SearchTrackPresenter
+    lateinit var presenter: SearchTrackPresenterImpl
 
     private lateinit var tracksRv: RecyclerView
 
@@ -28,6 +28,11 @@ class SearchTrackFragment : DaggerFragment(), SearchTrackView {
         initViews(view)
         initTracksRv()
         presenter.loadTracksByName("hello")
+    }
+
+    override fun onStop() {
+        presenter.stop()
+        super.onStop()
     }
 
     override fun hideTracks() {
