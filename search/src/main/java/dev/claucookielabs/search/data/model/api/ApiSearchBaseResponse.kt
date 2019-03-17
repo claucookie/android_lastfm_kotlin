@@ -1,4 +1,4 @@
-package dev.claucookielabs.search.data.model
+package dev.claucookielabs.search.data.model.api
 
 import com.google.gson.annotations.SerializedName
 

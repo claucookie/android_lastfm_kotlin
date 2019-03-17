@@ -1,7 +1,7 @@
 package dev.claucookielabs.search.data.datasource.remote
 
-import dev.claucookielabs.search.data.model.ApiSearchBaseResponse
-import dev.claucookielabs.search.data.model.ApiTrackMatches
+import dev.claucookielabs.search.data.model.api.ApiSearchBaseResponse
+import dev.claucookielabs.search.data.model.api.ApiTrackMatches
 import io.reactivex.Single
 import retrofit2.http.Query
 

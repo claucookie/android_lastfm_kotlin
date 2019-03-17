@@ -1,6 +1,6 @@
 package dev.claucookielabs.search.data.datasource
 
-import dev.claucookielabs.search.data.model.ApiTrackInfo
+import dev.claucookielabs.search.data.model.api.ApiTrackInfo
 
 interface TracksDatasource {
     fun getTracksByName(trackName: String): List<ApiTrackInfo>
