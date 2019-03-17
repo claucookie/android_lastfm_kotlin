@@ -8,6 +8,7 @@ import dev.claucookielabs.search.data.datasource.TracksDatasourceImpl
 import dev.claucookielabs.search.data.datasource.remote.SearchApi
 import dev.claucookielabs.search.data.repository.TracksRepository
 import dev.claucookielabs.search.data.repository.TracksRepositoryImpl
+import dev.claucookielabs.search.domain.SearchTrackByNameSingleUseCase
 import dev.claucookielabs.search.presentation.SearchTrackContract.SearchTrackPresenter
 import dev.claucookielabs.search.presentation.SearchTrackContract.SearchTrackView
 import dev.claucookielabs.search.presentation.presenter.SearchTrackPresenterImpl
@@ -51,7 +52,14 @@ class SearchModule {
     ): TracksDatasource = TracksDatasourceImpl(searchApi)
 
     @Provides
-    fun providesSearchPresenter(searchTrackView: SearchTrackView): SearchTrackPresenter {
-        return SearchTrackPresenterImpl(searchTrackView)
+    fun providesSearchPresenter(
+        searchTrackView: SearchTrackView,
+        searchTrackByNameUseCase: SearchTrackByNameSingleUseCase
+    ): SearchTrackPresenter {
+        return SearchTrackPresenterImpl(searchTrackView, searchTrackByNameUseCase)
     }
+
+    @Provides
+    fun providesSearchTrackByNameUseCase(tracksRepository: TracksRepository) =
+        SearchTrackByNameSingleUseCase(tracksRepository)
 }

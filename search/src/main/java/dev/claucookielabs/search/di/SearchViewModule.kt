@@ -6,7 +6,7 @@ import dev.claucookielabs.search.presentation.SearchTrackContract
 import dev.claucookielabs.search.presentation.ui.SearchTrackFragment
 
 @Module
-abstract class SearchTrackViewModule {
+abstract class SearchViewModule {
 
     @Binds
     abstract fun provideSearchTrackView(fragment: SearchTrackFragment): SearchTrackContract.SearchTrackView

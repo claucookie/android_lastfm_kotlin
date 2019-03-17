@@ -1,4 +1,4 @@
-package dev.claucookielabs.search.domain
+package dev.claucookielabs.search.domain.model
 
 data class TrackInfo(
     val name: String,

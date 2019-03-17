@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import dagger.android.support.DaggerFragment
 import dev.claucookielabs.search.R
-import dev.claucookielabs.search.domain.TrackInfo
+import dev.claucookielabs.search.domain.model.TrackInfo
 import dev.claucookielabs.search.presentation.SearchTrackContract.SearchTrackPresenter
 import dev.claucookielabs.search.presentation.SearchTrackContract.SearchTrackView
 import javax.inject.Inject
@@ -27,6 +27,19 @@ class SearchTrackFragment : DaggerFragment(), SearchTrackView {
         super.onViewCreated(view, savedInstanceState)
         initViews(view)
         initTracksRv()
+        presenter.loadTracksByName("hello")
+    }
+
+    override fun hideTracks() {
+        // Show loading
+    }
+
+    override fun showTracks(tracksList: List<TrackInfo>) {
+        tracksRv.adapter = TracksAdapter(tracksList)
+    }
+
+    override fun showError() {
+        // Show error
     }
 
     private fun initViews(view: View) {
@@ -37,27 +50,6 @@ class SearchTrackFragment : DaggerFragment(), SearchTrackView {
         tracksRv.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(requireContext())
-            adapter = TracksAdapter(
-                listOf(
-                    TrackInfo("track 1", "artist", listOf()),
-                    TrackInfo("track 1", "artist", listOf()),
-                    TrackInfo("track 1", "artist", listOf()),
-                    TrackInfo("track 1", "artist", listOf()),
-                    TrackInfo("track 1", "artist", listOf()),
-                    TrackInfo("track 1", "artist", listOf()),
-                    TrackInfo("track 1", "artist", listOf()),
-                    TrackInfo("track 1", "artist", listOf()),
-                    TrackInfo("track 1", "artist", listOf()),
-                    TrackInfo("track 1", "artist", listOf()),
-                    TrackInfo("track 1", "artist", listOf()),
-                    TrackInfo("track 1", "artist", listOf()),
-                    TrackInfo("track 1", "artist", listOf()),
-                    TrackInfo("track 1", "artist", listOf()),
-                    TrackInfo("track 1", "artist", listOf()),
-                    TrackInfo("track 1", "artist", listOf())
-
-                )
-            )
         }
     }
 

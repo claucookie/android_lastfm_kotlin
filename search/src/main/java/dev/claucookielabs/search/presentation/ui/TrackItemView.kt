@@ -4,7 +4,7 @@ import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import dev.claucookielabs.search.R
-import dev.claucookielabs.search.domain.TrackInfo
+import dev.claucookielabs.search.domain.model.TrackInfo
 
 class TrackItemView(itemView: View) : RecyclerView.ViewHolder(itemView) {
 

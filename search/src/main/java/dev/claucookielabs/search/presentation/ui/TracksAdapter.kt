@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import dev.claucookielabs.search.R
-import dev.claucookielabs.search.domain.TrackInfo
+import dev.claucookielabs.search.domain.model.TrackInfo
 
 class TracksAdapter(private val tracks: List<TrackInfo>) : RecyclerView.Adapter<TrackItemView>() {
 

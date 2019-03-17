@@ -7,7 +7,7 @@ import dev.claucookielabs.search.presentation.ui.SearchTrackFragment
 @Module
 abstract class SearchBindingModule {
 
-    @ContributesAndroidInjector(modules = [SearchTrackViewModule::class, SearchModule::class])
+    @ContributesAndroidInjector(modules = [SearchViewModule::class, SearchModule::class])
     abstract fun searchFragment(): SearchTrackFragment
 
 }
