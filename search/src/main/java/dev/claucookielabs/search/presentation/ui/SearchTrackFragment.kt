@@ -1,9 +1,8 @@
 package dev.claucookielabs.search.presentation.ui
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager.VERTICAL
@@ -14,12 +13,18 @@ import dev.claucookielabs.search.presentation.SearchTrackContract.SearchTrackVie
 import dev.claucookielabs.search.presentation.presenter.SearchTrackPresenterImpl
 import javax.inject.Inject
 
+
 class SearchTrackFragment : DaggerFragment(), SearchTrackView {
 
     @Inject
     lateinit var presenter: SearchTrackPresenterImpl
 
     private lateinit var tracksRv: RecyclerView
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =
         inflater.inflate(R.layout.fragment_search, null)
@@ -29,6 +34,13 @@ class SearchTrackFragment : DaggerFragment(), SearchTrackView {
         initViews(view)
         initTracksRv()
         presenter.loadTracksByName("hello")
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater?) {
+        super.onCreateOptionsMenu(menu, inflater)
+        menu.clear()
+        inflater?.inflate(R.menu.action_search, menu)
+        val searchView = menu.findItem(R.id.action_search)?.actionView as? SearchView
     }
 
     override fun onStop() {
