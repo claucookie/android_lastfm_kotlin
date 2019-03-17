@@ -8,6 +8,9 @@ import dev.claucookielabs.search.data.datasource.TracksDatasourceImpl
 import dev.claucookielabs.search.data.datasource.remote.SearchApi
 import dev.claucookielabs.search.data.repository.TracksRepository
 import dev.claucookielabs.search.data.repository.TracksRepositoryImpl
+import dev.claucookielabs.search.presentation.SearchTrackContract.SearchTrackPresenter
+import dev.claucookielabs.search.presentation.SearchTrackContract.SearchTrackView
+import dev.claucookielabs.search.presentation.presenter.SearchTrackPresenterImpl
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -46,4 +49,9 @@ class SearchModule {
     fun provideTracksDatasource(
         searchApi: SearchApi
     ): TracksDatasource = TracksDatasourceImpl(searchApi)
+
+    @Provides
+    fun providesSearchPresenter(searchTrackView: SearchTrackView): SearchTrackPresenter {
+        return SearchTrackPresenterImpl(searchTrackView)
+    }
 }

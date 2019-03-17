@@ -8,13 +8,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import dagger.android.support.DaggerFragment
 import dev.claucookielabs.search.R
-import dev.claucookielabs.search.data.repository.TracksRepository
 import dev.claucookielabs.search.domain.TrackInfo
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
+import dev.claucookielabs.search.presentation.SearchTrackContract.SearchTrackPresenter
+import dev.claucookielabs.search.presentation.SearchTrackContract.SearchTrackView
 import javax.inject.Inject
 
-class SearchTrackFragment : DaggerFragment() {
+class SearchTrackFragment : DaggerFragment(), SearchTrackView {
+
+    @Inject
+    lateinit var presenter: SearchTrackPresenter
 
     private lateinit var tracksRv: RecyclerView
 

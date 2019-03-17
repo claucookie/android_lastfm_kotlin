@@ -8,15 +8,13 @@ import dagger.android.AndroidInjector
 import dev.claucookielabs.core.CoreComponent
 import dev.claucookielabs.lastfm.LastFmApplication
 import dev.claucookielabs.search.di.SearchBindingModule
-import dev.claucookielabs.search.di.SearchModule
 
 
 @Component(
     modules = [
         AndroidInjectionModule::class,
         ActivityBindingModule::class,
-        SearchBindingModule::class,
-        SearchModule::class
+        SearchBindingModule::class
     ],
     dependencies = [
         CoreComponent::class
