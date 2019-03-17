@@ -4,8 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager.VERTICAL
 import dagger.android.support.DaggerFragment
 import dev.claucookielabs.search.R
 import dev.claucookielabs.search.domain.model.TrackInfo
@@ -54,7 +55,7 @@ class SearchTrackFragment : DaggerFragment(), SearchTrackView {
     private fun initTracksRv() {
         tracksRv.apply {
             setHasFixedSize(true)
-            layoutManager = LinearLayoutManager(requireContext())
+            layoutManager = StaggeredGridLayoutManager(2, VERTICAL)
         }
     }
 
