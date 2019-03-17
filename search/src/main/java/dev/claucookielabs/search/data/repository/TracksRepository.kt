@@ -9,10 +9,9 @@ interface TracksRepository {
     fun getTracksByName(trackName: String): Single<List<ApiTrackInfo>>
 }
 
-class TracksRepositoryImpl @Inject constructor(): TracksRepository {
-
-    @Inject
-    lateinit var tracksDatasource: TracksDatasource
+class TracksRepositoryImpl(
+    val tracksDatasource: TracksDatasource
+) : TracksRepository {
 
     override fun getTracksByName(trackName: String): Single<List<ApiTrackInfo>> {
         return tracksDatasource.getTracksByName(trackName)

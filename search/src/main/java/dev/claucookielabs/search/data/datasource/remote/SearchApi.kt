@@ -3,10 +3,12 @@ package dev.claucookielabs.search.data.datasource.remote
 import dev.claucookielabs.search.data.model.api.ApiSearchBaseResponse
 import dev.claucookielabs.search.data.model.api.ApiTrackMatches
 import io.reactivex.Single
+import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface SearchApi {
 
+    @GET("2.0/")
     fun listTracksByName(
         @Query("track") trackName: String,
         @Query("api_key") apikey: String,

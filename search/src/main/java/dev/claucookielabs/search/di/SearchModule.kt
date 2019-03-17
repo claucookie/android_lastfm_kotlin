@@ -12,13 +12,11 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import javax.inject.Singleton
 
 
 @Module
-class SearchApiModule {
+class SearchModule {
 
-    @Singleton
     @Provides
     fun provideRestApi(okHttpClient: OkHttpClient): SearchApi {
 
@@ -27,7 +25,7 @@ class SearchApiModule {
             .create()
 
         val retrofit = Retrofit.Builder()
-            .baseUrl("http://ws.audioscrobbler.com/2.0/")
+            .baseUrl("http://ws.audioscrobbler.com/")
             .addConverterFactory(GsonConverterFactory.create(gson))
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .client(okHttpClient)
@@ -36,14 +34,16 @@ class SearchApiModule {
         return retrofit.create(SearchApi::class.java)
     }
 
-    @Singleton
     @Provides
     fun provideOkHttp(): OkHttpClient = OkHttpClient()
 
     @Provides
-    fun provideTracksRepository(): TracksRepository = TracksRepositoryImpl()
+    fun provideTracksRepository(
+        datasource: TracksDatasource
+    ): TracksRepository = TracksRepositoryImpl(datasource)
 
     @Provides
-    fun provideTracksDatasource(): TracksDatasource = TracksDatasourceImpl()
-
+    fun provideTracksDatasource(
+        searchApi: SearchApi
+    ): TracksDatasource = TracksDatasourceImpl(searchApi)
 }

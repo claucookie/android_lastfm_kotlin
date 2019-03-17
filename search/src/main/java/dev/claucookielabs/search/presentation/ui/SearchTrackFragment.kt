@@ -16,9 +16,6 @@ import javax.inject.Inject
 
 class SearchTrackFragment : DaggerFragment() {
 
-    @Inject
-    lateinit var tracksRepository: TracksRepository
-
     private lateinit var tracksRv: RecyclerView
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =
@@ -28,10 +25,6 @@ class SearchTrackFragment : DaggerFragment() {
         super.onViewCreated(view, savedInstanceState)
         initViews(view)
         initTracksRv()
-        tracksRepository.getTracksByName("hello")
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe()
     }
 
     private fun initViews(view: View) {
