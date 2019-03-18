@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import dev.claucookielabs.search.R
 import dev.claucookielabs.search.domain.model.TrackInfo
 
-class TracksAdapter(private val tracks: List<TrackInfo>) : RecyclerView.Adapter<TrackItemView>() {
+class TracksAdapter(private var tracks: List<TrackInfo>) : RecyclerView.Adapter<TrackItemView>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TrackItemView {
         LayoutInflater.from(parent.context)
@@ -19,5 +19,10 @@ class TracksAdapter(private val tracks: List<TrackInfo>) : RecyclerView.Adapter<
     override fun getItemCount(): Int = tracks.size
 
     override fun onBindViewHolder(holder: TrackItemView, position: Int) = holder.bind(tracks[position])
+
+    fun setTracks(newTracks: List<TrackInfo>) {
+        tracks = newTracks
+        notifyDataSetChanged()
+    }
 }
 
