@@ -9,13 +9,16 @@ import dev.claucookielabs.search.presentation.ui.SearchTrackFragment
 
 class MainActivity : DaggerAppCompatActivity() {
 
+    private lateinit var searchTrackFragment: SearchTrackFragment
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_main)
+
+        searchTrackFragment = SearchTrackFragment()
         supportFragmentManager.beginTransaction().replace(
             R.id.content_layout,
-            SearchTrackFragment()
+            searchTrackFragment
         ).commitNow()
     }
 }
