@@ -52,10 +52,11 @@ class SearchTrackFragment : DaggerFragment(), SearchTrackView {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater?) {
         toolbar.inflateMenu(R.menu.action_search)
         searchView = toolbar.menu.findItem(R.id.action_search)?.actionView as SearchView
-        setupSearchInputListener()
+        searchView.queryHint = getString(R.string.search_hint)
+        setupSearchInputListeners()
     }
 
-    private fun setupSearchInputListener() {
+    private fun setupSearchInputListeners() {
         searchDisposable = searchInputSubject
             .throttleLast(300, TimeUnit.MILLISECONDS)
             .distinctUntilChanged()
@@ -70,6 +71,13 @@ class SearchTrackFragment : DaggerFragment(), SearchTrackView {
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 searchInputSubject.onNext(newText ?: "")
+                return true
+            }
+        })
+
+        searchView.setOnCloseListener(object : SearchView.OnCloseListener {
+            override fun onClose(): Boolean {
+                collapseSearchView()
                 return true
             }
         })
@@ -98,6 +106,8 @@ class SearchTrackFragment : DaggerFragment(), SearchTrackView {
     private fun initViews(view: View) {
         toolbar = view.findViewById(R.id.toolbar)
         (activity as AppCompatActivity).setSupportActionBar(toolbar)
+        requireActivity().actionBar?.setDisplayHomeAsUpEnabled(false)
+        requireActivity().actionBar?.setDisplayShowHomeEnabled(false)
         tracksRv = view.findViewById(R.id.tracks_rv)
     }
 
