@@ -10,6 +10,7 @@ import dev.claucookielabs.search.data.repository.TracksRepository
 import dev.claucookielabs.search.data.repository.TracksRepositoryImpl
 import dev.claucookielabs.search.domain.SearchTrackByNameSingleUseCase
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -36,7 +37,11 @@ class SearchModule {
     }
 
     @Provides
-    fun provideOkHttp(): OkHttpClient = OkHttpClient()
+    fun provideOkHttp(): OkHttpClient {
+        val interceptor = HttpLoggingInterceptor()
+        interceptor.level = HttpLoggingInterceptor.Level.HEADERS
+        return OkHttpClient.Builder().addInterceptor(interceptor).build()
+    }
 
     @Provides
     fun provideTracksRepository(

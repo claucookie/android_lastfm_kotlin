@@ -13,8 +13,6 @@ class SearchTrackPresenterImpl @Inject constructor(
     private val searchTrackByNameUseCase: SearchTrackByNameSingleUseCase
 ) : BasePresenter<SearchTrackView>(searchTrackView), SearchTrackPresenter {
 
-    private val searchInputSubject: PublishSubject<String> by lazy { PublishSubject.create<String>() }
-
     override fun loadTracksByName(name: String) {
         addDisposable(
             searchTrackByNameUseCase.execute(

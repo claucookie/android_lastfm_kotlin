@@ -13,6 +13,7 @@ import dev.claucookielabs.search.R
 import dev.claucookielabs.search.domain.model.TrackInfo
 import dev.claucookielabs.search.presentation.SearchTrackContract.SearchTrackView
 import dev.claucookielabs.search.presentation.presenter.SearchTrackPresenterImpl
+import io.reactivex.Observable
 import io.reactivex.disposables.Disposable
 import io.reactivex.subjects.PublishSubject
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent
@@ -58,8 +59,9 @@ class SearchTrackFragment : DaggerFragment(), SearchTrackView {
 
     private fun setupSearchInputListeners() {
         searchDisposable = searchInputSubject
-            .throttleLast(300, TimeUnit.MILLISECONDS)
+            .throttleLast(400, TimeUnit.MILLISECONDS)
             .distinctUntilChanged()
+            .switchMap { Observable.just(it) }
             .subscribe { presenter.loadTracksByName(it) }
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
@@ -106,8 +108,6 @@ class SearchTrackFragment : DaggerFragment(), SearchTrackView {
     private fun initViews(view: View) {
         toolbar = view.findViewById(R.id.toolbar)
         (activity as AppCompatActivity).setSupportActionBar(toolbar)
-        requireActivity().actionBar?.setDisplayHomeAsUpEnabled(false)
-        requireActivity().actionBar?.setDisplayShowHomeEnabled(false)
         tracksRv = view.findViewById(R.id.tracks_rv)
     }
 

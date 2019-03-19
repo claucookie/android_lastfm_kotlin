@@ -13,6 +13,6 @@ class SearchTrackByNameSingleUseCase(
 
     override fun buildBaseUseCase(param: String): Single<List<TrackInfo>> {
         return tracksRepository.getTracksByName(param)
-            .map { apiTrackList -> apiTrackList.map(ApiTrackInfo::toDomain)}
+            .map { apiTrackList -> apiTrackList.map(ApiTrackInfo::toDomain) }
     }
 }
