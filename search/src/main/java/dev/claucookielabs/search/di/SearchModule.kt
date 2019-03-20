@@ -8,7 +8,7 @@ import dev.claucookielabs.search.data.datasource.TracksDatasourceImpl
 import dev.claucookielabs.search.data.datasource.remote.SearchApi
 import dev.claucookielabs.search.data.repository.TracksRepository
 import dev.claucookielabs.search.data.repository.TracksRepositoryImpl
-import dev.claucookielabs.search.domain.SearchTrackByNameSingleUseCase
+import dev.claucookielabs.search.domain.SearchTrackByNameUseCase
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -55,5 +55,5 @@ class SearchModule {
 
     @Provides
     fun providesSearchTrackByNameUseCase(tracksRepository: TracksRepository) =
-        SearchTrackByNameSingleUseCase(tracksRepository)
+        SearchTrackByNameUseCase(tracksRepository)
 }

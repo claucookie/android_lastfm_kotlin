@@ -7,7 +7,7 @@ import dev.claucookielabs.search.data.repository.TracksRepository
 import dev.claucookielabs.search.domain.model.TrackInfo
 import io.reactivex.Single
 
-class SearchTrackByNameSingleUseCase(
+class SearchTrackByNameUseCase(
     private val tracksRepository: TracksRepository
 ) : BaseSingleUseCase<List<TrackInfo>, String>() {
 

@@ -1,11 +1,11 @@
 package dev.claucookielabs.search.data.repository
 
-import com.nhaarman.mockitokotlin2.eq
-import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.verify
-import com.nhaarman.mockitokotlin2.whenever
+import com.nhaarman.mockitokotlin2.*
 import dev.claucookielabs.search.data.datasource.TracksDatasource
+import dev.claucookielabs.search.data.model.api.ApiTrackInfo
+import dev.claucookielabs.search.fixtures.aListOfTracks
 import io.reactivex.Single
+import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
 
@@ -21,7 +21,7 @@ class TracksRepositoryImplTest {
 
     @Test
     fun `test getTracksByName() SHOULD return data from datasource`() {
-        whenever(mockTracksDatasource.getTracksByName(eq(""))).thenReturn(Single.just(listOf()))
+        whenever(mockTracksDatasource.getTracksByName(any())).thenReturn(Single.just(listOf()))
 
         tracksRepository.getTracksByName("").test()
 
@@ -31,10 +31,14 @@ class TracksRepositoryImplTest {
     @Test
     fun `test getTracksByName() SHOULD pass track name as argument`() {
         val input = "abcc"
-        whenever(mockTracksDatasource.getTracksByName(eq(input))).thenReturn(Single.just(listOf()))
+        whenever(mockTracksDatasource.getTracksByName(any())).thenReturn(Single.just(aListOfTracks()))
 
         tracksRepository.getTracksByName(input).test()
 
-        verify(mockTracksDatasource).getTracksByName(eq(input))
+        // Giving a try to argument captor
+        argumentCaptor<String>().apply {
+            verify(mockTracksDatasource).getTracksByName(capture())
+            assertEquals(input, allValues.first())
+        }
     }
 }
