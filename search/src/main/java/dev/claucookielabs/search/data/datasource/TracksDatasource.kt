@@ -15,9 +15,8 @@ class TracksDatasourceImpl(
 
     override fun getTracksByName(trackName: String): Single<List<ApiTrackInfo>> {
         return searchApi.listTracksByName(trackName, BuildConfig.LAST_FM_API_KEY)
-            .map {
-                it.results.trackMatches.tracks
-            }
+            .map { it.results.trackMatches.tracks }
+            .onErrorReturn { listOf() }
     }
 
 }
