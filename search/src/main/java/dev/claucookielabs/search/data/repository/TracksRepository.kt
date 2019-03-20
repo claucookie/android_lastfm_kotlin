@@ -10,7 +10,7 @@ interface TracksRepository {
 }
 
 class TracksRepositoryImpl(
-    val tracksDatasource: TracksDatasource
+    private val tracksDatasource: TracksDatasource
 ) : TracksRepository {
 
     override fun getTracksByName(trackName: String): Single<List<ApiTrackInfo>> {

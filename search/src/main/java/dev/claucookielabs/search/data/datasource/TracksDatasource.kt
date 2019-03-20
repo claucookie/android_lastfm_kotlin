@@ -10,7 +10,7 @@ interface TracksDatasource {
 }
 
 class TracksDatasourceImpl(
-    val searchApi: SearchApi
+    private val searchApi: SearchApi
 ) : TracksDatasource {
 
     override fun getTracksByName(trackName: String): Single<List<ApiTrackInfo>> {
