@@ -112,12 +112,16 @@ class SearchTrackFragment : DaggerFragment(), SearchTrackView {
     }
 
     private fun initTracksRv() {
-        tracksAdapter = TracksAdapter(listOf())
+        tracksAdapter = TracksAdapter(listOf()) { onTrackClicked(it) }
         tracksRv.apply {
             setHasFixedSize(true)
             adapter = tracksAdapter
             layoutManager = StaggeredGridLayoutManager(2, VERTICAL)
         }
+    }
+
+    private fun onTrackClicked(trackInfo: TrackInfo) {
+        // Open detail window
     }
 
     private fun initKeyboardListener() {
