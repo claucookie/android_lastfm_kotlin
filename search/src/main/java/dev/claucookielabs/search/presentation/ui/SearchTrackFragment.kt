@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager.VERTICAL
 import dagger.android.support.DaggerFragment
 import dev.claucookielabs.search.R
 import dev.claucookielabs.search.domain.model.TrackInfo
+import dev.claucookielabs.search.navigation.Navigator
 import dev.claucookielabs.search.presentation.SearchTrackContract.SearchTrackView
 import dev.claucookielabs.search.presentation.presenter.SearchTrackPresenterImpl
 import io.reactivex.Observable
@@ -25,6 +26,8 @@ class SearchTrackFragment : DaggerFragment(), SearchTrackView {
 
     @Inject
     lateinit var presenter: SearchTrackPresenterImpl
+    @Inject
+    lateinit var navigator: Navigator
 
     private lateinit var tracksRv: RecyclerView
     private lateinit var toolbar: Toolbar
@@ -121,7 +124,7 @@ class SearchTrackFragment : DaggerFragment(), SearchTrackView {
     }
 
     private fun onTrackClicked(trackInfo: TrackInfo) {
-        // Open detail window
+        navigator.openTrackDetails(requireActivity(), trackInfo)
     }
 
     private fun initKeyboardListener() {

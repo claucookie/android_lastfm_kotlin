@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Search</string>
     <string name="search_hint">Type a track name</string>
+    <string name="details">Details</string>
 </resources>

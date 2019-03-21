@@ -23,4 +23,8 @@
         <item name="android:textAppearance">@style/TextAppearance.AppCompat.Title</item>
         <item name="android:background">#88000000</item>
     </style>
+
+    <style name="SelectableItem">
+        <item name="colorControlHighlight">@color/colorPrimary</item>
+    </style>
 </resources>

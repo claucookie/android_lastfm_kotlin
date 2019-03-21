@@ -15,7 +15,7 @@ class TrackItemView(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     fun bind(trackInfo: TrackInfo) {
         val url = trackInfo.images[1].url
-        itemView.loadImage(url, coverIv)
+        coverIv.loadImage(url)
         nameTv.text = trackInfo.name
     }
 
