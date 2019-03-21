@@ -1,5 +1,6 @@
 package dev.claucookielabs.search.presentation.presenter
 
+import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
@@ -33,10 +34,13 @@ class SearchTrackPresenterImplTest {
     fun `test loadTracksByName()  SHOULD retrieve  data from usecase`() {
         val listOfTracksSingle = Single.just(aListOfTracks())
         // Pass an observable instead
-        whenever(mockSearchTrackByNameUseCase.buildBaseUseCase("")).thenReturn(listOfTracksSingle)
+        whenever(mockSearchTrackByNameUseCase.buildBaseUseCase(any())).thenReturn(listOfTracksSingle)
 
         searchTrackPresenter.loadTracksByName("")
-
         verify(mockSearchTrackByNameUseCase).buildBaseUseCase("")
+        searchTrackPresenter.loadTracksByName("a")
+        verify(mockSearchTrackByNameUseCase).buildBaseUseCase("a")
+        searchTrackPresenter.loadTracksByName("b")
+        verify(mockSearchTrackByNameUseCase).buildBaseUseCase("b")
     }
 }
