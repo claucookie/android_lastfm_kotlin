@@ -2,8 +2,7 @@ package dev.claucookielabs.search.data.repository
 
 import com.nhaarman.mockitokotlin2.*
 import dev.claucookielabs.search.data.datasource.TracksDatasource
-import dev.claucookielabs.search.data.model.api.ApiTrackInfo
-import dev.claucookielabs.search.fixtures.aListOfTracks
+import dev.claucookielabs.search.fixtures.aListOfApiTracks
 import io.reactivex.Single
 import org.junit.Assert.assertEquals
 import org.junit.Before
@@ -31,7 +30,7 @@ class TracksRepositoryImplTest {
     @Test
     fun `test getTracksByName() SHOULD pass track name as argument`() {
         val input = "abcc"
-        whenever(mockTracksDatasource.getTracksByName(any())).thenReturn(Single.just(aListOfTracks()))
+        whenever(mockTracksDatasource.getTracksByName(any())).thenReturn(Single.just(aListOfApiTracks()))
 
         tracksRepository.getTracksByName(input).test()
 

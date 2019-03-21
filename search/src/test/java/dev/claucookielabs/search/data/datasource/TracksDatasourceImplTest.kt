@@ -6,8 +6,8 @@ import dev.claucookielabs.search.data.datasource.remote.SearchApi
 import dev.claucookielabs.search.data.model.api.ApiSearchBaseResponse
 import dev.claucookielabs.search.data.model.api.ApiTrackMatches
 import dev.claucookielabs.search.data.model.api.ApiTracks
-import dev.claucookielabs.search.fixtures.aListOfTracks
-import dev.claucookielabs.search.fixtures.anotherListOfTracks
+import dev.claucookielabs.search.fixtures.aListOfApiTracks
+import dev.claucookielabs.search.fixtures.anotherListOfApiTracks
 import io.reactivex.Single
 import org.junit.Before
 import org.junit.Test
@@ -24,19 +24,19 @@ class TracksDatasourceImplTest {
 
     @Test
     fun `test getTracksByName() SHOULD return tracks starting by A WHEN input is blank`() {
-        val apiBaseResponse = ApiSearchBaseResponse(ApiTrackMatches(ApiTracks(aListOfTracks())), "3")
+        val apiBaseResponse = ApiSearchBaseResponse(ApiTrackMatches(ApiTracks(aListOfApiTracks())), "3")
 
         whenever(mockSearchApi.listTracksByName(eq(""), any(), any(), any())).thenReturn(Single.just(apiBaseResponse))
 
         tracksDatasource
             .getTracksByName("")
             .test()
-            .assertValue(aListOfTracks())
+            .assertValue(aListOfApiTracks())
     }
 
     @Test
     fun `test getTracksByName() SHOULD return 2 tracks WHEN input is matching 2 track names`() {
-        val apiBaseResponse = ApiSearchBaseResponse(ApiTrackMatches(ApiTracks(anotherListOfTracks())), "2")
+        val apiBaseResponse = ApiSearchBaseResponse(ApiTrackMatches(ApiTracks(anotherListOfApiTracks())), "2")
         val input = "ad"
 
         whenever(mockSearchApi.listTracksByName(eq(input), any(), any(), any())).thenReturn(Single.just(apiBaseResponse))
@@ -44,7 +44,7 @@ class TracksDatasourceImplTest {
         tracksDatasource
             .getTracksByName(input)
             .test()
-            .assertValue(anotherListOfTracks())
+            .assertValue(anotherListOfApiTracks())
     }
 
     @Test
