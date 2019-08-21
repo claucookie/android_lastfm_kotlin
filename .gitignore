@@ -47,3 +47,5 @@ lint/generated/
 lint/outputs/
 lint/tmp/
 # lint/reports/
+
+*/.DS_STORE

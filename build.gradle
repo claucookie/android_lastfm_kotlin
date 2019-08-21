@@ -10,7 +10,7 @@ buildscript {
         maven { url 'https://maven.google.com' }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.0-alpha07'
+        classpath 'com.android.tools.build:gradle:3.5.0-rc03'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         // There is an issue with androidx and dagger 2.20. Beta version solves it
         // https://github.com/google/dagger/issues/1371#issuecomment-449748217
