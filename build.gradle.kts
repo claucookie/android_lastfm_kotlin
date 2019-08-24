@@ -25,5 +25,7 @@ allprojects {
 }
 
 tasks.register<Delete>("clean") {
-    delete(rootProject.buildDir)
+    val folder = rootProject.buildDir
+    delete(folder)
+    doLast { print("Deleted ... $folder") }
 }
