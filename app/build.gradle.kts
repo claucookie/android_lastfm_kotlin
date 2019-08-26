@@ -6,14 +6,14 @@ plugins {
 }
 
 android {
-    compileSdkVersion(28)
+    compileSdkVersion(Config.Android.compileSdkVersion)
     defaultConfig {
-        applicationId = "dev.claucookielabs.lastfm"
-        minSdkVersion(22)
-        targetSdkVersion(28)
-        versionCode = 1
-        versionName = "1.0"
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        applicationId = Config.Android.applicationId
+        minSdkVersion(Config.Android.minSdkVersion)
+        targetSdkVersion(Config.Android.targetSdkVersion)
+        versionCode = Config.Android.versionCode
+        versionName = Config.Android.versionName
+        testInstrumentationRunner = Config.Android.instrumentationRunner
     }
 
     buildTypes {
