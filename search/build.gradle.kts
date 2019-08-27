@@ -6,15 +6,14 @@ plugins {
 }
 
 android {
-    compileSdkVersion(28)
+    compileSdkVersion(Config.Android.compileSdkVersion)
     defaultConfig {
-        minSdkVersion(22)
-        targetSdkVersion(28)
-        versionCode = 1
-        versionName = "1.0"
-        testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
-        buildConfigField("String", "LAST_FM_API_KEY", "\"9556cfb87fe52e0f72bdaa3163dda5cf\"")
-
+        minSdkVersion(Config.Android.minSdkVersion)
+        targetSdkVersion(Config.Android.targetSdkVersion)
+        versionCode = Config.Android.versionCode
+        versionName = Config.Android.versionName
+        testInstrumentationRunner = Config.Android.instrumentationRunner
+        buildConfigField(Config.Field.LastFmApiKey.type, Config.Field.LastFmApiKey.fieldName, "\"${Config.Field.LastFmApiKey.value}\"")
     }
 
     buildTypes {
