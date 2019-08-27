@@ -1,5 +1,11 @@
 object Config {
-    object BuildPlugins 
+    object BuildPlugins {
+        val androidApplication = "com.android.application"
+        val androidLibrary = "com.android.library"
+        val android = "android"
+        val kapt = "kapt"
+        val extensions = "android.extensions"
+    }
 
     object Android {
         val minSdkVersion = 22

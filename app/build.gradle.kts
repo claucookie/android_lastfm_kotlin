@@ -1,8 +1,8 @@
 plugins {
-    id("com.android.application")
-    kotlin("android")
-    kotlin("kapt")
-    kotlin("android.extensions")
+    id(Config.BuildPlugins.androidApplication)
+    kotlin(Config.BuildPlugins.android)
+    kotlin(Config.BuildPlugins.kapt)
+    kotlin(Config.BuildPlugins.extensions)
 }
 
 android {
