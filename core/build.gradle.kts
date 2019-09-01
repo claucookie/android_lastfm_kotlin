@@ -29,16 +29,12 @@ android {
 }
 
 dependencies {
-    Config.Libs.impl.forEach {
-        implementation(it)
-    }
-    Config.Libs.kapt.forEach {
-        kapt(it)
-    }
-    Config.Libs.testImpl.forEach {
-        testImplementation(it)
-    }
-    Config.Libs.androidTestImpl.forEach {
-        androidTestImplementation(it)
+    Config.Libs.dependencies.forEach {
+        when(it) {
+            is Config.DepConfig.DepImpl -> implementation(it.nameAndVersion)
+            is Config.DepConfig.DepKapt -> kapt(it.nameAndVersion)
+            is Config.DepConfig.DepTestImpl -> testImplementation(it.nameAndVersion)
+            is Config.DepConfig.DepAndroidTestImpl -> androidTestImplementation(it.nameAndVersion)
+        }
     }
 }
