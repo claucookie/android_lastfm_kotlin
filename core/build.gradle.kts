@@ -1,8 +1,8 @@
 plugins {
-    id(Config.BuildPlugins.androidLibrary)
-    kotlin(Config.BuildPlugins.android)
-    kotlin(Config.BuildPlugins.kapt)
-    kotlin(Config.BuildPlugins.extensions)
+    id(Config.BuildPlugins.androidLibraryPlugin)
+    kotlin(Config.BuildPlugins.androidPlugin)
+    kotlin(Config.BuildPlugins.kaptPlugin)
+    kotlin(Config.BuildPlugins.extensionsPlugin)
 }
 
 android {
@@ -13,7 +13,6 @@ android {
         versionCode = Config.Android.versionCode
         versionName = Config.Android.versionName
         testInstrumentationRunner = Config.Android.instrumentationRunner
-
     }
 
     buildTypes {
@@ -29,7 +28,7 @@ android {
 }
 
 dependencies {
-    Config.Libs.dependencies.forEach {
+    Config.Modules.core.forEach {
         when(it) {
             is Config.DepConfig.DepImpl -> implementation(it.nameAndVersion)
             is Config.DepConfig.DepKapt -> kapt(it.nameAndVersion)

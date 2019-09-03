@@ -1,8 +1,8 @@
 plugins {
-    id(Config.BuildPlugins.androidLibrary)
-    kotlin(Config.BuildPlugins.android)
-    kotlin(Config.BuildPlugins.kapt)
-    kotlin(Config.BuildPlugins.extensions)
+    id(Config.BuildPlugins.androidLibraryPlugin)
+    kotlin(Config.BuildPlugins.androidPlugin)
+    kotlin(Config.BuildPlugins.kaptPlugin)
+    kotlin(Config.BuildPlugins.extensionsPlugin)
 }
 
 android {
@@ -27,7 +27,7 @@ android {
 dependencies {
     implementation(project(":core"))
 
-    Config.Libs.dependencies.forEach {
+    Config.Modules.search.forEach {
         when(it) {
             is Config.DepConfig.DepImpl -> implementation(it.nameAndVersion)
             is Config.DepConfig.DepKapt -> kapt(it.nameAndVersion)
