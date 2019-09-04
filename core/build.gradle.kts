@@ -28,7 +28,7 @@ android {
 }
 
 dependencies {
-    Config.Modules.core.forEach {
+    Config.Modules.coreDeps.forEach {
         when(it) {
             is Config.DepConfig.DepImpl -> implementation(it.nameAndVersion)
             is Config.DepConfig.DepKapt -> kapt(it.nameAndVersion)

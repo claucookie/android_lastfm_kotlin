@@ -36,7 +36,7 @@ dependencies {
     implementation(project(":search"))
     implementation(project(":core"))
 
-    Config.Modules.app.forEach {
+    Config.Modules.appDeps.forEach {
         when(it) {
             is Config.DepConfig.DepImpl -> implementation(it.nameAndVersion)
             is Config.DepConfig.DepKapt -> kapt(it.nameAndVersion)

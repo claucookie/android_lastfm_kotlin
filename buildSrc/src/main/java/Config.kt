@@ -18,12 +18,33 @@ object Config {
     }
 
     object Modules {
-        val app =
-            Libs.kotlin + Libs.androidX + Libs.dagger + Libs.retrofit + Libs.okHttp + Libs.utils + Libs.rxJava + Libs.unitUiTest
-        val search =
-            Libs.kotlin + Libs.androidX + Libs.dagger + Libs.retrofit + Libs.okHttp + Libs.utils + Libs.rxJava + Libs.unitUiTest
-        val core =
-            Libs.kotlin + Libs.androidX + Libs.dagger + Libs.retrofit + Libs.okHttp + Libs.utils + Libs.rxJava + Libs.unitUiTest
+        val appDeps =
+            Libs.kotlin +
+                    Libs.androidX +
+                    Libs.dagger +
+                    Libs.retrofit +
+                    Libs.okHttp +
+                    Libs.utils +
+                    Libs.rxJava +
+                    Libs.unitUiTest
+        val searchDeps =
+            Libs.kotlin +
+                    Libs.androidX +
+                    Libs.dagger +
+                    Libs.retrofit +
+                    Libs.okHttp +
+                    Libs.utils +
+                    Libs.rxJava +
+                    Libs.unitUiTest
+        val coreDeps =
+            Libs.kotlin +
+                    Libs.androidX +
+                    Libs.dagger +
+                    Libs.retrofit +
+                    Libs.okHttp +
+                    Libs.utils +
+                    Libs.rxJava +
+                    Libs.unitUiTest
 
         private object Libs {
             val kotlin = listOf(
